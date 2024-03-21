@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "603367848516",
+    "firebase_url": "https://pinjam-sahabat-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "pinjam-sahabat",
+    "storage_bucket": "pinjam-sahabat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603367848516:android:58e338a6d2c304b44b5a11",
+        "android_client_info": {
+          "package_name": "com.example.pinjam_sahabat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuIBcTH19d0cXDMQ8IXv8b9AaWzzJZ31s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

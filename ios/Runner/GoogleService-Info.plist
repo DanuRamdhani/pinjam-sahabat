@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyB7VDmqkvLgGJdJQ1psDuzhWymnBGW4VsY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>603367848516</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.pinjamSahabat</string>
+	<key>PROJECT_ID</key>
+	<string>pinjam-sahabat</string>
+	<key>STORAGE_BUCKET</key>
+	<string>pinjam-sahabat.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:603367848516:ios:69871e325d9c2d2c4b5a11</string>
+</dict>
+</plist>
