@@ -102,7 +102,7 @@ class EditPostProvider extends ChangeNotifier {
 
       isLoading = false;
       notifyListeners();
-      
+
       if (!context.mounted) return;
       context.pop();
       await getPostProv.refreshPost(context);

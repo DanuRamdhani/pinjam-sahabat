@@ -38,9 +38,9 @@ class AuthenticationProvider extends ChangeNotifier {
       notifyListeners();
 
       if (isLogin) {
-        AuthService.loginUser( enteredEmail, enteredPassword);
+        AuthService.loginUser(enteredEmail, enteredPassword);
       } else {
-        AuthService.createUser( enteredEmail, enteredPassword);
+        AuthService.createUser(enteredEmail, enteredPassword);
       }
 
       context.pushReplacementNamed(AppRoute.mainWrapper);

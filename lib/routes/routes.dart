@@ -7,7 +7,7 @@ class AppRoute {
   static const addPost = '/add-post';
   static const editPost = '/edit-post';
   static const detailPayment = '/detail-payment';
-  static const paymentSucces= '/payment-succes';
+  static const paymentSucces = '/payment-succes';
   static const googleMap = '/google-map';
   static const rentUser = '/rent-user';
 }

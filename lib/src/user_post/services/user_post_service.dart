@@ -32,11 +32,10 @@ class UserPostService {
     List<String> rules,
   ) async {
     final userId = auth.currentUser!.uid;
-    final postId= db.collection('post').doc().id;
+    final postId = db.collection('post').doc().id;
 
     final ref = storage.ref();
-    final postRef =
-        ref.child('all-post/$userId/$postId.jpg');
+    final postRef = ref.child('all-post/$userId/$postId.jpg');
 
     await postRef.putFile(file);
     final imageUrl = await postRef.getDownloadURL();
