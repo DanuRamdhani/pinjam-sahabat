@@ -6,7 +6,6 @@ import 'package:pinjam_sahabat/utils/custom_snack_bar.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 
 class AuthenticationProvider extends ChangeNotifier {
-  final firebase = FirebaseAuth.instance;
   final form = GlobalKey<FormState>();
 
   String enteredEmail = '';
@@ -39,9 +38,9 @@ class AuthenticationProvider extends ChangeNotifier {
       notifyListeners();
 
       if (isLogin) {
-        AuthService.loginUser(firebase, enteredEmail, enteredPassword);
+        AuthService.loginUser( enteredEmail, enteredPassword);
       } else {
-        AuthService.createUser(firebase, enteredEmail, enteredPassword);
+        AuthService.createUser( enteredEmail, enteredPassword);
       }
 
       context.pushReplacementNamed(AppRoute.mainWrapper);

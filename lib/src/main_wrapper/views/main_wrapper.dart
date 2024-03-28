@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/src/main_wrapper/providers/main_wrapper_provider.dart';
 import 'package:provider/provider.dart';
@@ -16,22 +17,18 @@ class MainWrapper extends StatelessWidget {
         ),
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: context.color.primary,
-          unselectedItemColor: context.color.primary.withOpacity(.7),
+          unselectedItemColor: context.color.onSurface.withOpacity(.4),
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: FaIcon(FontAwesomeIcons.house),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.storefront_outlined),
-              label: 'Category',
+              icon: FaIcon(FontAwesomeIcons.boxOpen),
+              label: 'Barang',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add),
-              label: 'Add',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: FaIcon(FontAwesomeIcons.user),
               label: 'Profile',
             ),
           ],

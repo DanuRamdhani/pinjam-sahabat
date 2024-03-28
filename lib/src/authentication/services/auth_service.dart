@@ -1,20 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:pinjam_sahabat/helper/firebase_helper.dart';
 
 class AuthService {
   static Future<void> createUser(
-    FirebaseAuth firebase,
     String enteredEmail,
     String enteredPassword,
   ) async {
-    final userCrindential = await firebase.createUserWithEmailAndPassword(
+    final userCrindential = await auth.createUserWithEmailAndPassword(
       email: enteredEmail,
       password: enteredPassword,
     );
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(userCrindential.user!.uid)
-        .set({
+
+    await db.collection('users').doc(userCrindential.user!.uid).set({
       'email': enteredEmail,
       'image_url': 'image_url',
       'createdAt': Timestamp.now(),
@@ -22,11 +19,10 @@ class AuthService {
   }
 
   static Future<void> loginUser(
-    FirebaseAuth firebase,
     String enteredEmail,
     String enteredPassword,
   ) async {
-    await firebase.signInWithEmailAndPassword(
+    await auth.signInWithEmailAndPassword(
       email: enteredEmail,
       password: enteredPassword,
     );
