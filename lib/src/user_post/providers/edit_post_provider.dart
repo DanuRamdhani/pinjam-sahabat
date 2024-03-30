@@ -79,7 +79,7 @@ class EditPostProvider extends ChangeNotifier {
       }
 
       if (amountCtrl.text.trim().isEmpty) {
-        priceCtrl.text = '1';
+        amountCtrl.text = '1';
       }
 
       final priceParse = int.parse(priceCtrl.text);

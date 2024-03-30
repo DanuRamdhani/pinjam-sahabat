@@ -22,7 +22,8 @@ class UserPostItem extends StatelessWidget {
       itemBuilder: (context, index) {
         final userPost = getUserPost.listUserPost[index];
 
-        if (index == getUserPost.listUserPost.length) {
+        if (index + 1 == getUserPost.listUserPost.length &&
+            getUserPost.listUserPost.length > 3) {
           return const SizedBox(height: 80);
         }
 
@@ -100,13 +101,13 @@ class UserPostItem extends StatelessWidget {
                         ],
                       ),
                       RichText(
-                        text: const TextSpan(
-                          style: TextStyle(color: Colors.black),
+                        text: TextSpan(
+                          style: const TextStyle(color: Colors.black),
                           text: 'Jumlah :',
                           children: [
                             TextSpan(
-                              text: '14',
-                              style: TextStyle(
+                              text: userPost.amount.toString(),
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                               ),
                             ),

@@ -14,6 +14,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final getPostProv = context.read<GetPostProvider>();
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -39,7 +41,9 @@ class HomePage extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(16).copyWith(top: 4),
-            child: const CustomSearchBar(),
+            child: CustomSearchBar(
+              listPost: getPostProv.listAllPost,
+            ),
           ),
           Expanded(
             child: ListView(
@@ -75,8 +79,6 @@ class HomePage extends StatelessWidget {
                             style: context.text.headlineSmall,
                           ),
                           const SizedBox(height: 8),
-                          if (getPostProv.listFreePost.isEmpty)
-                            const Text('belum ada barang'),
                           PostFreeItem(getPostProv: getPostProv),
                           const SizedBox(height: 24),
                           Text(
@@ -84,8 +86,6 @@ class HomePage extends StatelessWidget {
                             style: context.text.headlineSmall,
                           ),
                           const SizedBox(height: 8),
-                          if (getPostProv.listPaidPost.isEmpty)
-                            const Text('belum ada barang'),
                           PostPaidItem(getPostProv: getPostProv),
                         ],
                       );

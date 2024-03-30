@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pinjam_sahabat/routes/routes.dart';
-import 'package:pinjam_sahabat/src/authentication/views/auth_page.dart';
+import 'package:pinjam_sahabat/src/auth/view/login_page.dart';
+import 'package:pinjam_sahabat/src/auth/view/lupa_password_page.dart';
+import 'package:pinjam_sahabat/src/auth/view/register_page.dart';
 import 'package:pinjam_sahabat/src/home/models/post.dart';
 import 'package:pinjam_sahabat/src/home/views/detail_payment_page.dart';
 import 'package:pinjam_sahabat/src/home/views/detail_post_page.dart';
@@ -14,7 +16,9 @@ import 'package:pinjam_sahabat/src/user_post/views/google_map_page.dart';
 import 'package:pinjam_sahabat/src/user_post/views/rent_user.dart';
 
 final routes = {
-  AppRoute.auth: (_) => const AuthPage(),
+  AppRoute.login: (_) => const LoginPage(),
+  AppRoute.registration: (_) => const RegisterPage(),
+  AppRoute.forgotPassword: (_) => const LupaPasswordPage(),
   AppRoute.splash: (_) => const SplashScreen(),
   AppRoute.mainWrapper: (_) => const MainWrapper(),
   AppRoute.detailPost: (_) => DetailPostPage(

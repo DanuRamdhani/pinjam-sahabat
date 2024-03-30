@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/routes/routes.dart';
 import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
@@ -26,17 +27,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.spatial_audio_off),
-            SizedBox(
-              width: 70,
-              child: LinearProgressIndicator(),
-            ),
-          ],
+        child: Icon(
+          FontAwesomeIcons.truckRampBox,
+          size: 72,
+          color: context.color.primary,
         ),
       ),
     );

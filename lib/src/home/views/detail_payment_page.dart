@@ -63,7 +63,7 @@ class DetailPaymentPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Rules :',
+                            'Peraturan :',
                             style: context.text.titleMedium?.copyWith(
                               fontWeight: FontWeight.bold,
                             ),

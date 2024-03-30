@@ -2,6 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinjam_sahabat/helper/firebase_helper.dart';
 
 class GetPostService {
+  static Future<QuerySnapshot<Map<String, dynamic>>> getAllPost() async {
+    final snapshot = await db.collection('post').get();
+
+    return snapshot;
+  }
+
   static Future<QuerySnapshot<Map<String, dynamic>>> getAllFreePost() async {
     final snapshot = await db
         .collection('post')

@@ -1,27 +1,79 @@
 {
   "project_info": {
-    "project_number": "603367848516",
-    "firebase_url": "https://pinjam-sahabat-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "pinjam-sahabat",
-    "storage_bucket": "pinjam-sahabat.appspot.com"
+    "project_number": "985682424544",
+    "project_id": "pinjam-sahabat-27afd",
+    "storage_bucket": "pinjam-sahabat-27afd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:603367848516:android:58e338a6d2c304b44b5a11",
+        "mobilesdk_app_id": "1:985682424544:android:3aa4b5ef65061d4418d685",
         "android_client_info": {
           "package_name": "com.example.pinjam_sahabat"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "985682424544-53proj2qmnq85ja1l66enki00ubtkpq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyBuIBcTH19d0cXDMQ8IXv8b9AaWzzJZ31s"
+          "current_key": "AIzaSyB9vlnyeYi5Mo14ePI6OgusKzI9rGPf8eo"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985682424544-53proj2qmnq85ja1l66enki00ubtkpq1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "985682424544-57jk91o2mn2jf4gi4dkvk81175tlbm97.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sewaBarang"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985682424544:android:992f06c767b38a3118d685",
+        "android_client_info": {
+          "package_name": "com.example.sewa_barang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "985682424544-53proj2qmnq85ja1l66enki00ubtkpq1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9vlnyeYi5Mo14ePI6OgusKzI9rGPf8eo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "985682424544-53proj2qmnq85ja1l66enki00ubtkpq1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "985682424544-57jk91o2mn2jf4gi4dkvk81175tlbm97.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sewaBarang"
+              }
+            }
+          ]
         }
       }
     }

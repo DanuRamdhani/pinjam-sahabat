@@ -58,7 +58,7 @@ class AddPostProvider extends ChangeNotifier {
       }
 
       if (amountCtrl.text.trim().isEmpty || amountCtrl.text.trim() == '0') {
-        priceCtrl.text = '1';
+        amountCtrl.text = '1';
       }
 
       final priceParse = int.parse(priceCtrl.text);

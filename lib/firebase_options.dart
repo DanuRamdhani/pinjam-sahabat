@@ -50,23 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBuIBcTH19d0cXDMQ8IXv8b9AaWzzJZ31s',
-    appId: '1:603367848516:android:58e338a6d2c304b44b5a11',
-    messagingSenderId: '603367848516',
-    projectId: 'pinjam-sahabat',
-    databaseURL:
-        'https://pinjam-sahabat-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'pinjam-sahabat.appspot.com',
+    apiKey: 'AIzaSyB9vlnyeYi5Mo14ePI6OgusKzI9rGPf8eo',
+    appId: '1:985682424544:android:3aa4b5ef65061d4418d685',
+    messagingSenderId: '985682424544',
+    projectId: 'pinjam-sahabat-27afd',
+    storageBucket: 'pinjam-sahabat-27afd.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyB7VDmqkvLgGJdJQ1psDuzhWymnBGW4VsY',
-    appId: '1:603367848516:ios:69871e325d9c2d2c4b5a11',
-    messagingSenderId: '603367848516',
-    projectId: 'pinjam-sahabat',
-    databaseURL:
-        'https://pinjam-sahabat-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'pinjam-sahabat.appspot.com',
+    apiKey: 'AIzaSyDyyxTyz5IZlgeFZfdM9Rwp0RZYIKVFzps',
+    appId: '1:985682424544:ios:798b163240e6348818d685',
+    messagingSenderId: '985682424544',
+    projectId: 'pinjam-sahabat-27afd',
+    storageBucket: 'pinjam-sahabat-27afd.appspot.com',
+    iosClientId: '985682424544-bdpumcn05cfuqcbm37v2upifeo203sak.apps.googleusercontent.com',
     iosBundleId: 'com.example.pinjamSahabat',
   );
 }

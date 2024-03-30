@@ -7,16 +7,29 @@ import 'package:pinjam_sahabat/utils/categories.dart';
 class GetPostProvider extends ChangeNotifier {
   List<Post> listFreePost = [];
   List<Post> listPaidPost = [];
+  List<Post> listAllPost = [];
   ResponseState responseState = ResponseState.initial;
   String selectedCategory = categories.first;
 
+  Future<void> getPostForSearching() async {
+    listAllPost.clear();
+    final snapshot = await GetPostService.getAllPost();
+
+    for (var post in snapshot.docs) {
+      listAllPost.add(Post.fromFirestore(post));
+    }
+  }
+
   Future<void> getAllPost(BuildContext context) async {
+    responseState = ResponseState.loading;
+
     try {
       listFreePost.clear();
       listPaidPost.clear();
       selectedCategory = categories.first;
       notifyListeners();
 
+      await getPostForSearching();
       final snapshotFree = await GetPostService.getAllFreePost();
       final snapshotPaid = await GetPostService.getAllPaidPost();
 
@@ -39,39 +52,13 @@ class GetPostProvider extends ChangeNotifier {
   }
 
   Future<void> refreshPost(BuildContext context) async {
-    responseState = ResponseState.loading;
-    notifyListeners();
-
     try {
-      listFreePost.clear();
-      listPaidPost.clear();
-
       if (selectedCategory == categories.first) {
-        final snapshotFree = await GetPostService.getAllFreePost();
-        final snapshotPaid = await GetPostService.getAllPaidPost();
-
-        for (var post in snapshotFree.docs) {
-          listFreePost.add(Post.fromFirestore(post));
-        }
-        for (var post in snapshotPaid.docs) {
-          listPaidPost.add(Post.fromFirestore(post));
-        }
+        await getAllPost(context);
       } else {
-        final snapshotFree =
-            await GetPostService.getFreePostByCategory(selectedCategory);
-        final snapshotPaid =
-            await GetPostService.getPaidPostByCategory(selectedCategory);
-
-        for (var post in snapshotFree.docs) {
-          listFreePost.add(Post.fromFirestore(post));
-        }
-        for (var post in snapshotPaid.docs) {
-          listPaidPost.add(Post.fromFirestore(post));
-        }
+        await getPostByCategory(context, selectedCategory);
+        await getPostForSearching();
       }
-
-      responseState = ResponseState.succes;
-      notifyListeners();
     } catch (e) {
       responseState = ResponseState.fail;
       notifyListeners();

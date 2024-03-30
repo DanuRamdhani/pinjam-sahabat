@@ -1,5 +1,7 @@
 class AppRoute {
-  static const auth = '/auth';
+  static const login = '/login';
+  static const registration = '/registration';
+  static const forgotPassword = '/forgot-password';
   static const splash = '/splash';
   static const mainWrapper = '/mainwrapper';
   static const detailPost = '/detail-post';

@@ -27,13 +27,16 @@ class _UserPostPageState extends State<UserPostPage> {
 
   @override
   Widget build(BuildContext context) {
+    final getUserPostProv = context.read<GetUserPostProvider>();
+
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16).copyWith(bottom: 0),
           child: Column(
             children: [
-              const CustomSearchBar(),
+              CustomSearchBar(listPost: getUserPostProv.listUserPost),
               const SizedBox(height: 16),
               Expanded(
                 child: Consumer<GetUserPostProvider>(
