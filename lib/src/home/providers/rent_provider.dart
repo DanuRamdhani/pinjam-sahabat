@@ -93,11 +93,6 @@ class RentProvider extends ChangeNotifier {
           post.price *
           (lastDate.toDate().day - firstDate.toDate().day);
 
-      if (auth.currentUser!.phoneNumber == null) {
-        customSnackBar(context, 'tambahkan no hp terlebih dahulu');
-        return;
-      }
-
       final phoneNumber = profileProv.userData!['phoneNumber'];
       final userName = profileProv.userData!['username'];
 
