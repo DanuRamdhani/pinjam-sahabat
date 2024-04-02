@@ -1,9 +1,9 @@
-// ignore_for_file: use_build_context_synchronously
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/helper/firebase_helper.dart';
 import 'package:pinjam_sahabat/routes/routes.dart';
+import 'package:pinjam_sahabat/utils/custom_snack_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginProvider extends ChangeNotifier {
@@ -41,7 +41,6 @@ class LoginProvider extends ChangeNotifier {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setBool('isLoggedIn', true);
     await prefs.setString('email', user?.email ?? '');
-    // Tambahkan informasi lain yang ingin Anda simpan dari user
   }
 
   Future<void> login(BuildContext context) async {
@@ -52,56 +51,37 @@ class LoginProvider extends ChangeNotifier {
       );
       User? user = userCredential.user;
       if (user != null && user.emailVerified) {
-        await saveLoginData(user); // Simpan data login
+        await saveLoginData(user);
+        if (!context.mounted) return;
         context.pushReplacementNamed(AppRoute.splash);
-        clearCredentials(); // Clear credentials after successful login
+        clearCredentials();
       } else if (user != null && !user.emailVerified) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Please verify your email before logging in.'),
-          ),
-        );
+        if (!context.mounted) return;
+        customSnackBar(context, 'Please verify your email before logging in.');
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Invalid email or password.'),
-          ),
-        );
+        if (!context.mounted) return;
+        customSnackBar(context, 'Invalid email or password.');
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('An error occurred. Please try again later.'),
-        ),
-      );
+      customSnackBar(context, 'An error occurred. Please try again later.');
     }
   }
 
   Future<void> resetPassword(BuildContext context) async {
     try {
       await auth.sendPasswordResetEmail(email: _forgotPassword);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text('Email untuk reset password telah dikirim.'),
-          action: SnackBarAction(
-            label: 'Tutup',
-            onPressed: () {},
-          ),
-        ),
+      if (!context.mounted) return;
+      customSnackBarwithClose(
+        context,
+        'Email untuk reset password telah dikirim.',
       );
 
-      Navigator.pushReplacementNamed(context, '/login');
+      context.pushReplacementNamed(AppRoute.login);
       clearCredentials();
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Text(
-              'Gagal mengirim email reset password. Periksa kembali email Anda.'),
-          action: SnackBarAction(
-            label: 'Tutup',
-            onPressed: () {},
-          ),
-        ),
+      customSnackBarwithClose(
+        context,
+        'Gagal mengirim email reset password. Periksa kembali email Anda.',
       );
     }
   }
