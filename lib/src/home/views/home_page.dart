@@ -4,6 +4,7 @@ import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/src/home/models/response.dart';
 import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
 import 'package:pinjam_sahabat/src/home/widgets/custom_search_bar.dart';
+import 'package:pinjam_sahabat/src/profile/providers/profile_provider.dart';
 import 'package:pinjam_sahabat/src/user_post/widgets/category_menu.dart';
 import 'package:pinjam_sahabat/src/home/widgets/post_free_item.dart';
 import 'package:pinjam_sahabat/src/home/widgets/post_paid_item.dart';
@@ -19,22 +20,43 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Row(
-          children: [
-            CircleAvatar(
-              backgroundColor: Colors.transparent,
-              child: FaIcon(
-                FontAwesomeIcons.solidCircleUser,
-                size: 40,
-                color: Colors.grey.shade400,
-              ),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              'anonymous',
-              style: context.text.titleMedium,
-            ),
-          ],
+        title: Consumer<ProfileProvider>(
+          builder: (context, profileProv, _) {
+            final Map<String, dynamic>? data = profileProv.userData;
+
+            if (data?['profilePicture'] != null) {
+              return Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(data?['profilePicture']),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(
+                    'Halo, ${data?['username']}',
+                    style: context.text.titleMedium,
+                  ),
+                ],
+              );
+            }
+
+            return Row(
+              children: [
+                CircleAvatar(
+                  backgroundColor: Colors.transparent,
+                  child: FaIcon(
+                    FontAwesomeIcons.solidCircleUser,
+                    size: 40,
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'anonymous',
+                  style: context.text.titleMedium,
+                ),
+              ],
+            );
+          },
         ),
       ),
       body: Column(

@@ -55,7 +55,8 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 20),
                     GestureDetector(
-                      onTap: () => context.pushReplacementNamed(AppRoute.forgotPassword),
+                      onTap: () =>
+                          context.pushReplacementNamed(AppRoute.forgotPassword),
                       child: Text(
                         'Lupa Password?',
                         style: TextStyle(

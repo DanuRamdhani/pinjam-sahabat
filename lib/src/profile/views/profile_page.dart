@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinjam_sahabat/helper/firebase_helper.dart';
 import 'package:pinjam_sahabat/res/color.dart';
 import 'package:pinjam_sahabat/src/profile/providers/profile_provider.dart';
@@ -65,16 +66,24 @@ class _ProfilePageState extends State<ProfilePage> {
                         margin: const EdgeInsets.only(top: 112 / 2),
                         width: 112,
                         height: 112,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
                           shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: NetworkImage(
-                              data['profilePicture'] ??
-                                  'https://firebasestorage.googleapis.com/v0/b/pinjam-sahabat-27afd.appspot.com/o/blank.png?alt=media&token=a5300a0a-e92f-4d0e-9b02-5eda8892296b',
-                            ),
-                            fit: BoxFit.cover,
-                          ),
                         ),
+                        child: data['profilePicture'] != null
+                            ? CircleAvatar(
+                                backgroundImage: NetworkImage(
+                                  data['profilePicture'],
+                                ),
+                              )
+                            : CircleAvatar(
+                                backgroundColor: Colors.transparent,
+                                child: FaIcon(
+                                  FontAwesomeIcons.solidCircleUser,
+                                  size: 112,
+                                  color: Colors.grey.shade300,
+                                ),
+                              ),
                       ),
                     ),
                   ),

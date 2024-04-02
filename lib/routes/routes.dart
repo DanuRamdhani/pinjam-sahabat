@@ -12,4 +12,6 @@ class AppRoute {
   static const paymentSucces = '/payment-succes';
   static const googleMap = '/google-map';
   static const rentUser = '/rent-user';
+  static const rating = '/rating';
+  static const report = '/report';
 }

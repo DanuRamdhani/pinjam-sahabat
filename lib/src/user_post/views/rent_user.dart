@@ -73,122 +73,118 @@ class _RentUserPageState extends State<RentUserPage> {
                 itemBuilder: (context, index) {
                   final rentUser = rentProv.listRentUser[index];
 
-                  return GestureDetector(
-                    onTap: () {},
-                    child: Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              rentUser.userName,
-                              style: context.text.titleMedium,
-                            ),
-                            const SizedBox(height: 4),
-                            Row(
-                              children: [
-                                const Text('no. Hp : '),
-                                Text(
-                                  rentUser.ordererPhoneNumber,
-                                  style: context.text.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            rentUser.userName,
+                            style: context.text.titleMedium,
+                          ),
+                          const SizedBox(height: 4),
+                          Row(
+                            children: [
+                              const Text('no. Hp : '),
+                              Text(
+                                rentUser.ordererPhoneNumber,
+                                style: context.text.bodyMedium?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Text('jumlah barang : '),
+                              Text(
+                                rentUser.amountOrder.toString(),
+                                style: context.text.bodyMedium?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              const Text('total harga : '),
+                              Text(
+                                priceFormated(rentUser.totalPrice, false),
+                                style: context.text.bodyMedium?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Chip(
+                                label: Text(dateFormatted(rentUser.firstDate)),
+                                labelPadding: const EdgeInsets.symmetric(
+                                  horizontal: 0,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              const FaIcon(
+                                FontAwesomeIcons.angleRight,
+                                size: 16,
+                              ),
+                              const SizedBox(width: 8),
+                              Chip(
+                                label: Text(dateFormatted(rentUser.lastDate)),
+                                labelPadding: const EdgeInsets.symmetric(
+                                  horizontal: 0,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              ElevatedButton(
+                                onPressed: () {
+                                  changeStatusDialog(
+                                    context,
+                                    rentUser.rentId!,
+                                    rentUser.status,
+                                    widget.post.postId!,
+                                    rentUser.status == false
+                                        ? widget.post.amount -
+                                            rentUser.amountOrder
+                                        : widget.post.amount +
+                                            rentUser.amountOrder,
+                                  );
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  elevation: 0,
+                                ),
+                                child: const Text('Ubah status'),
+                              ),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 4, horizontal: 8),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: rentUser.status
+                                      ? Colors.green.shade400
+                                      : Colors.redAccent,
+                                ),
+                                child: Text(
+                                  rentUser.status
+                                      ? 'sudah bayar'
+                                      : 'belum bayar',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                const Text('jumlah barang : '),
-                                Text(
-                                  rentUser.amountOrder.toString(),
-                                  style: context.text.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                const Text('total harga : '),
-                                Text(
-                                  priceFormated(rentUser.totalPrice, false),
-                                  style: context.text.bodyMedium?.copyWith(
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Chip(
-                                  label:
-                                      Text(dateFormatted(rentUser.firstDate)),
-                                  labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 0,
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                const FaIcon(
-                                  FontAwesomeIcons.angleRight,
-                                  size: 16,
-                                ),
-                                const SizedBox(width: 8),
-                                Chip(
-                                  label: Text(dateFormatted(rentUser.lastDate)),
-                                  labelPadding: const EdgeInsets.symmetric(
-                                    horizontal: 0,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    changeStatusDialog(
-                                      context,
-                                      rentUser.rentId!,
-                                      rentUser.status,
-                                      widget.post.postId!,
-                                      rentUser.status == false
-                                          ? widget.post.amount -
-                                              rentUser.amountOrder
-                                          : widget.post.amount +
-                                              rentUser.amountOrder,
-                                    );
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    elevation: 0,
-                                  ),
-                                  child: const Text('Ubah status'),
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 4, horizontal: 8),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: rentUser.status
-                                        ? Colors.green.shade400
-                                        : Colors.redAccent,
-                                  ),
-                                  child: Text(
-                                    rentUser.status
-                                        ? 'sudah bayar'
-                                        : 'belum bayar',
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   );

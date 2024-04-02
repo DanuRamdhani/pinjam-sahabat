@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinjam_sahabat/src/home/models/post.dart';
-import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
 import 'package:pinjam_sahabat/src/home/widgets/my_search_delegate.dart';
-import 'package:provider/provider.dart';
 
 class CustomSearchBar extends StatefulWidget {
   const CustomSearchBar({super.key, required this.listPost});
@@ -45,10 +43,9 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
         SizedBox(width: 8),
       ],
       onTap: () {
-        final getPostProv = context.read<GetPostProvider>();
         showSearch(
           context: context,
-          delegate: MySearchDelegate(data: getPostProv.listAllPost),
+          delegate: MySearchDelegate(data: widget.listPost),
         );
       },
       hintText: 'Cari barang',

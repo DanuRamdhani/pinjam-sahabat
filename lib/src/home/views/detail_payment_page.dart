@@ -226,15 +226,17 @@ class DetailPaymentPage extends StatelessWidget {
             child: Row(
               children: [
                 const Spacer(),
-                Consumer<RentProvider>(builder: (context, rentProv, _) {
-                  return ElevatedButton(
-                    onPressed: () => rentProv.rentStuff(context, post),
-                    style: ElevatedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                    ),
-                    child: const Text('Buat Pesanan'),
-                  );
-                }),
+                Consumer<RentProvider>(
+                  builder: (context, rentProv, _) {
+                    return ElevatedButton(
+                      onPressed: () => rentProv.rentStuff(context, post),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 24),
+                      ),
+                      child: const Text('Buat Pesanan'),
+                    );
+                  },
+                ),
               ],
             ),
           ),

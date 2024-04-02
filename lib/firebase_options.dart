@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '985682424544',
     projectId: 'pinjam-sahabat-27afd',
     storageBucket: 'pinjam-sahabat-27afd.appspot.com',
-    iosClientId: '985682424544-bdpumcn05cfuqcbm37v2upifeo203sak.apps.googleusercontent.com',
+    iosClientId:
+        '985682424544-bdpumcn05cfuqcbm37v2upifeo203sak.apps.googleusercontent.com',
     iosBundleId: 'com.example.pinjamSahabat',
   );
 }

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/routes/routes.dart';
 import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
@@ -60,10 +61,45 @@ class PostFreeItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
-                  Text(
-                    post.desc,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 85,
+                        child: Text(
+                          post.desc,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                      const Spacer(),
+                      if (post.rating == 0)
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          decoration: BoxDecoration(
+                              color: Colors.blueAccent,
+                              borderRadius: BorderRadius.circular(8)),
+                          child: const Text(
+                            'baru',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      else
+                        Row(
+                          children: [
+                            Text(
+                              post.rating.toString(),
+                            ),
+                            const SizedBox(width: 2),
+                            FaIcon(
+                              FontAwesomeIcons.solidStar,
+                              size: 10,
+                              color: Colors.yellowAccent.shade700,
+                            ),
+                          ],
+                        ),
+                    ],
                   ),
                 ],
               ),

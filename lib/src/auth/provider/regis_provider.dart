@@ -32,8 +32,7 @@ class RegistrationProvider extends ChangeNotifier {
   Future<void> register(
       BuildContext context, String username, String phoneNumber) async {
     try {
-      UserCredential userCredential =
-          await auth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
         email: _email,
         password: _password,
       );

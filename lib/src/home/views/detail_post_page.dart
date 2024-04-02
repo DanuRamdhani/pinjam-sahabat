@@ -43,6 +43,13 @@ class _DetailPostPageState extends State<DetailPostPage> {
             onPressed: () => context.pop(),
             icon: const FaIcon(FontAwesomeIcons.angleLeft),
           ),
+          actions: [
+            IconButton(
+              onPressed: () => context.pushNamed(AppRoute.report, widget.post),
+              icon: const FaIcon(FontAwesomeIcons.circleInfo),
+              iconSize: 18,
+            ),
+          ],
         ),
         body: SafeArea(
           child: ListView(
@@ -124,6 +131,18 @@ class _DetailPostPageState extends State<DetailPostPage> {
                           style: context.text.bodyMedium,
                         ),
                       ],
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        onTap: () =>
+                            context.pushNamed(AppRoute.rating, widget.post),
+                        child: const Text(
+                          'beri rating',
+                          style:
+                              TextStyle(decoration: TextDecoration.underline),
+                        ),
+                      ),
                     ),
                     const Divider(),
                     Text(

@@ -4,8 +4,10 @@ import 'package:pinjam_sahabat/routes.dart';
 import 'package:pinjam_sahabat/routes/routes.dart';
 import 'package:pinjam_sahabat/src/auth/provider/login_provider.dart';
 import 'package:pinjam_sahabat/src/auth/provider/regis_provider.dart';
+import 'package:pinjam_sahabat/src/home/providers/rating_provider.dart';
 import 'package:pinjam_sahabat/src/home/providers/rent_provider.dart';
 import 'package:pinjam_sahabat/src/profile/providers/profile_provider.dart';
+import 'package:pinjam_sahabat/src/report/providers/report_provider.dart';
 import 'package:pinjam_sahabat/src/user_post/providers/add_post.dart';
 import 'package:pinjam_sahabat/src/main_wrapper/providers/main_wrapper_provider.dart';
 import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
@@ -44,6 +46,8 @@ Future<void> main() async {
         ChangeNotifierProvider(create: (_) => LocationProvider()),
         ChangeNotifierProvider(create: (_) => RentProvider()),
         ChangeNotifierProvider(create: (_) => GetRentUserProvider()),
+        ChangeNotifierProvider(create: (_) => RatingProvider()),
+        ChangeNotifierProvider(create: (_) => ReportProvider()),
       ],
       child: MyApp(initialRoute: initialRoute),
     ),

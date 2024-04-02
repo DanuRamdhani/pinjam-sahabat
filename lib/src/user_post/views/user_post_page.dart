@@ -27,7 +27,7 @@ class _UserPostPageState extends State<UserPostPage> {
 
   @override
   Widget build(BuildContext context) {
-    final getUserPostProv = context.read<GetUserPostProvider>();
+    final getUserPostProv = context.watch<GetUserPostProvider>();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

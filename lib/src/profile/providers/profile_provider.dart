@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pinjam_sahabat/helper/firebase_helper.dart';
 import 'package:pinjam_sahabat/src/main_wrapper/providers/main_wrapper_provider.dart';
+import 'package:pinjam_sahabat/utils/custom_snack_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -51,13 +52,8 @@ class ProfileProvider extends ChangeNotifier {
           .doc(user?.uid)
           .update({'profilePicture': downloadUrl});
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Foto profil berhasil diperbarui!'),
-        ),
-      );
+      customSnackBar(context, 'Foto profil berhasil diperbarui!');
 
-      // Refresh user data
       await fetchUserData();
     }
   }

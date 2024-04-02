@@ -22,11 +22,6 @@ class UserPostItem extends StatelessWidget {
       itemBuilder: (context, index) {
         final userPost = getUserPost.listUserPost[index];
 
-        if (index + 1 == getUserPost.listUserPost.length &&
-            getUserPost.listUserPost.length > 3) {
-          return const SizedBox(height: 80);
-        }
-
         return GestureDetector(
           onTap: () => context.pushNamed(AppRoute.detailUserPost, userPost),
           child: Column(

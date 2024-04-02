@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/routes/routes.dart';
 import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
@@ -94,8 +95,18 @@ class PostPaidItem extends StatelessWidget {
                             ),
                           )
                         else
-                          Text(
-                            post.rating.toString(),
+                          Row(
+                            children: [
+                              Text(
+                                post.rating.toString(),
+                              ),
+                              const SizedBox(width: 2),
+                              FaIcon(
+                                FontAwesomeIcons.solidStar,
+                                size: 10,
+                                color: Colors.yellowAccent.shade700,
+                              ),
+                            ],
                           ),
                       ],
                     )

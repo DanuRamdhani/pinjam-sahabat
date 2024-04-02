@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 class GetRentUserProvider extends ChangeNotifier {
   List<RentItem> listRentUser = [];
   ResponseState responseState = ResponseState.initial;
+  bool isLoading = false;
 
   Future<void> getRentUser(String postId) async {
     responseState = ResponseState.loading;
@@ -45,8 +46,12 @@ class GetRentUserProvider extends ChangeNotifier {
     final getUserPost = context.read<GetUserPostProvider>();
     final getPost = context.read<GetPostProvider>();
 
+    isLoading = true;
+    notifyListeners();
+
     try {
       await GetRentService.updateStatus(rentId, status, postId, amountAfter);
+
       if (!context.mounted) return;
       if (getPost.selectedCategory == categories.first) {
         await getPost.getAllPost(context);
@@ -54,13 +59,20 @@ class GetRentUserProvider extends ChangeNotifier {
         await getPost.getPostByCategory(context, getPost.selectedCategory);
       }
       await getUserPost.getUserPost();
+
       if (!context.mounted) return;
-      customSnackBar(context, 'berhasil mengubah status');
+      isLoading = false;
+      notifyListeners();
       Navigator.popUntil(
-          context, (route) => route.settings.name == AppRoute.mainWrapper);
+        context,
+        (route) => route.settings.name == AppRoute.mainWrapper,
+      );
+      customSnackBar(context, 'mengubah status berhasil');
     } catch (e) {
-      customSnackBar(context, 'gagal mengubah status');
+      isLoading = false;
+      notifyListeners();
       context.pop();
+      customSnackBar(context, 'gagal mengubah status');
     }
   }
 }

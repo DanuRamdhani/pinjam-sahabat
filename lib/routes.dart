@@ -7,7 +7,9 @@ import 'package:pinjam_sahabat/src/home/models/post.dart';
 import 'package:pinjam_sahabat/src/home/views/detail_payment_page.dart';
 import 'package:pinjam_sahabat/src/home/views/detail_post_page.dart';
 import 'package:pinjam_sahabat/src/home/views/payment_succes_page.dart';
+import 'package:pinjam_sahabat/src/home/views/rating_page.dart';
 import 'package:pinjam_sahabat/src/main_wrapper/views/main_wrapper.dart';
+import 'package:pinjam_sahabat/src/report/views/report_page.dart';
 import 'package:pinjam_sahabat/src/splash/views/splash_screen.dart';
 import 'package:pinjam_sahabat/src/user_post/views/add_post_page.dart';
 import 'package:pinjam_sahabat/src/user_post/views/detail_user_post.dart';
@@ -39,6 +41,12 @@ final routes = {
         post: ModalRoute.of(_)?.settings.arguments as Post?,
       ),
   AppRoute.rentUser: (_) => RentUserPage(
+        post: ModalRoute.of(_)?.settings.arguments as Post,
+      ),
+  AppRoute.rating: (_) => RatingPage(
+        post: ModalRoute.of(_)?.settings.arguments as Post,
+      ),
+  AppRoute.report: (_) => ReportPage(
         post: ModalRoute.of(_)?.settings.arguments as Post,
       ),
 };

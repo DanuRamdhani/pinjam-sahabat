@@ -22,7 +22,7 @@ class _FadeInAnimationState extends State<FadeInAnimation>
     controller = AnimationController(
         duration: Duration(milliseconds: (500 * widget.delay).round()),
         vsync: this);
-    animation2 = Tween<double>(begin:-40, end: 0).animate(controller)
+    animation2 = Tween<double>(begin: -40, end: 0).animate(controller)
       ..addListener(() {
         setState(() {});
       });
