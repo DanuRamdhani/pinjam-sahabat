@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:pinjam_sahabat/res/color.dart';
 import 'package:pinjam_sahabat/res/fonts.dart';
 
 final myTheme = ThemeData(
   useMaterial3: true,
   colorScheme: ColorScheme.fromSeed(
-    seedColor: const Color.fromARGB(255, 58, 199, 164),
-    primary: const Color.fromARGB(255, 58, 199, 164),
+    seedColor: MyColor.hijau,
+    primary: MyColor.hijau,
   ),
-  appBarTheme: const AppBarTheme(
+  appBarTheme: AppBarTheme(
     centerTitle: true,
     titleTextStyle: TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 18,
-      color: Colors.black,
+      color: MyColor.hitam,
     ),
   ),
   textTheme: const TextTheme(
@@ -20,12 +21,12 @@ final myTheme = ThemeData(
   ),
   fontFamily: Fonts.poppins,
   cardTheme: CardTheme(
-    color: Colors.grey.shade100,
+    color: MyColor.abu,
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color.fromARGB(255, 58, 199, 164),
-      foregroundColor: Colors.white,
+      backgroundColor: MyColor.hijau,
+      foregroundColor: MyColor.backgroud,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ),
   ),

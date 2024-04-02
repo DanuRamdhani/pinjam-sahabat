@@ -36,7 +36,10 @@ class _UserPostPageState extends State<UserPostPage> {
           padding: const EdgeInsets.all(16).copyWith(bottom: 0),
           child: Column(
             children: [
-              CustomSearchBar(listPost: getUserPostProv.listUserPost),
+              CustomSearchBar(
+                listPost: getUserPostProv.listUserPost,
+                isGetUserData: true,
+              ),
               const SizedBox(height: 16),
               Expanded(
                 child: Consumer<GetUserPostProvider>(

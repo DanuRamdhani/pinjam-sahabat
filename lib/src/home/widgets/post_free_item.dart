@@ -89,7 +89,7 @@ class PostFreeItem extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              post.rating.toString(),
+                              post.rating.toStringAsFixed(1),
                             ),
                             const SizedBox(width: 2),
                             FaIcon(

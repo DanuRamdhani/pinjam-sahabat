@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/routes/routes.dart';
 import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
+import 'package:pinjam_sahabat/src/profile/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +17,9 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     final getPostProv = context.read<GetPostProvider>();
+    final profileProv = context.read<ProfileProvider>();
 
+    Future.microtask(() => profileProv.fetchUserData(context));
     Future.microtask(() => getPostProv.getAllPost(context));
     Future.delayed(
       const Duration(milliseconds: 2500),

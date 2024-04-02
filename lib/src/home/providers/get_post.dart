@@ -29,7 +29,6 @@ class GetPostProvider extends ChangeNotifier {
       selectedCategory = categories.first;
       notifyListeners();
 
-      await getPostForSearching();
       final snapshotFree = await GetPostService.getAllFreePost();
       final snapshotPaid = await GetPostService.getAllPaidPost();
 
@@ -57,7 +56,6 @@ class GetPostProvider extends ChangeNotifier {
         await getAllPost(context);
       } else {
         await getPostByCategory(context, selectedCategory);
-        await getPostForSearching();
       }
     } catch (e) {
       responseState = ResponseState.fail;

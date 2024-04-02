@@ -1,9 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinjam_sahabat/helper/firebase_helper.dart';
 import 'package:pinjam_sahabat/res/color.dart';
 import 'package:pinjam_sahabat/src/profile/providers/profile_provider.dart';
 import 'package:pinjam_sahabat/src/auth/widget/custom_text.dart';
+import 'package:pinjam_sahabat/utils/custom_snack_bar.dart';
 import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -71,9 +74,28 @@ class _ProfilePageState extends State<ProfilePage> {
                           shape: BoxShape.circle,
                         ),
                         child: data['profilePicture'] != null
-                            ? CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                  data['profilePicture'],
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(80),
+                                child: CachedNetworkImage(
+                                  alignment: Alignment.center,
+                                  fit: BoxFit.cover,
+                                  imageUrl: data['profilePicture'],
+                                  placeholder: (context, url) => FaIcon(
+                                    FontAwesomeIcons.solidCircleUser,
+                                    size: 40,
+                                    color: Colors.grey.shade400,
+                                  ),
+                                  errorWidget: (context, url, error) => FaIcon(
+                                    FontAwesomeIcons.solidCircleUser,
+                                    size: 40,
+                                    color: Colors.grey.shade400,
+                                  ),
+                                  cacheManager: CacheManager(
+                                    Config(
+                                      'cache-profile',
+                                      stalePeriod: const Duration(minutes: 30),
+                                    ),
+                                  ),
                                 ),
                               )
                             : CircleAvatar(
@@ -127,15 +149,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           await auth.sendPasswordResetEmail(
                               email: data['email']);
                           if (!context.mounted) return;
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: const Text(
-                                  'Email untuk reset password telah dikirim.'),
-                              action: SnackBarAction(
-                                label: 'Tutup',
-                                onPressed: () {},
-                              ),
-                            ),
+                          customSnackBarwithClose(
+                            context,
+                            'Email untuk reset password telah dikirim.',
                           );
                         },
                         child: const CustomText(data: 'Ubah Password')),
