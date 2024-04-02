@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/routes/routes.dart';
 import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
+import 'package:pinjam_sahabat/src/user_post/providers/compress.dart';
 import 'package:pinjam_sahabat/src/user_post/providers/location_provider.dart';
 import 'package:pinjam_sahabat/src/main_wrapper/providers/main_wrapper_provider.dart';
 import 'package:pinjam_sahabat/src/user_post/services/user_post_service.dart';
@@ -111,7 +112,13 @@ class AddPostProvider extends ChangeNotifier {
 
     if (image == null) return;
 
-    pickedImage = File(image.path);
+    try {
+      final compressedImage = await Compress.compressImage(File(image.path));
+      pickedImage = compressedImage;
+    } catch (e) {
+      if (!context.mounted) return;
+      customSnackBar(context, 'Cant add this image');
+    }
     notifyListeners();
     if (!context.mounted) return;
     context.pop();
@@ -123,7 +130,14 @@ class AddPostProvider extends ChangeNotifier {
 
     if (image == null) return;
 
-    pickedImage = File(image.path);
+    try {
+      final compressedImage = await Compress.compressImage(File(image.path));
+      pickedImage = compressedImage;
+    } catch (e) {
+      if (!context.mounted) return;
+      customSnackBar(context, 'Cant add this image');
+    }
+
     notifyListeners();
     if (!context.mounted) return;
     context.pop();

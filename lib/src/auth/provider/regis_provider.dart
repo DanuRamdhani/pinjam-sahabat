@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinjam_sahabat/helper/firebase_helper.dart';
+import 'package:pinjam_sahabat/utils/custom_snack_bar.dart';
 
 class RegistrationProvider extends ChangeNotifier {
   String _email = '';
@@ -47,11 +48,11 @@ class RegistrationProvider extends ChangeNotifier {
         'profilePicture': null,
       });
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-              'A verification email has been sent to ${userCredential.user?.email}. Please verify your email before logging in.'),
-        ),
+      if (!context.mounted) return;
+      customSnackBar(
+        context,
+        'A verification email has been sent to ${userCredential.user?.email}. '
+        'Please verify your email before logging in.',
       );
 
       Navigator.pushReplacementNamed(context, '/login');
@@ -65,8 +66,6 @@ class RegistrationProvider extends ChangeNotifier {
           ),
         ),
       );
-
-      print("Error: $e");
     }
   }
 }

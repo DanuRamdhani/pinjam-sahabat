@@ -18,7 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<ProfileProvider>().fetchUserData();
+      context.read<ProfileProvider>().fetchUserData(context);
     });
   }
 
@@ -126,6 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         onTap: () async {
                           await auth.sendPasswordResetEmail(
                               email: data['email']);
+                          if (!context.mounted) return;
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: const Text(

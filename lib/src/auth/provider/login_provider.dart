@@ -74,7 +74,6 @@ class LoginProvider extends ChangeNotifier {
           content: Text('An error occurred. Please try again later.'),
         ),
       );
-      print('Error: $e');
     }
   }
 
@@ -104,12 +103,6 @@ class LoginProvider extends ChangeNotifier {
           ),
         ),
       );
-      print("Error during password reset: $e");
     }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
   }
 }

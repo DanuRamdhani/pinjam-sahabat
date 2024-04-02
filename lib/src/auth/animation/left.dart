@@ -26,7 +26,7 @@ class _LeftAnimationState extends State<LeftAnimation>
     );
 
     slideAnimation = Tween<Offset>(
-      begin: Offset(-40, 0.0), // Starts from the left (off-screen)
+      begin: const Offset(-40, 0.0), // Starts from the left (off-screen)
       end: Offset.zero,
     ).animate(controller);
 

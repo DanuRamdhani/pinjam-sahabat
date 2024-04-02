@@ -21,8 +21,6 @@ class ReportProvider extends ChangeNotifier {
   }
 
   Future<void> report(BuildContext context, String postId) async {
-    print(selectedOption);
-    print(otherDescription);
     isLoading = true;
     notifyListeners();
     try {

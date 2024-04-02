@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/routes/routes.dart';
 import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
@@ -29,10 +28,22 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Icon(
-          FontAwesomeIcons.truckRampBox,
-          size: 72,
-          color: context.color.primary,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/app_logo.png',
+              height: 90,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Pinjam.co',
+              style: context.text.titleLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: context.color.primary,
+              ),
+            ),
+          ],
         ),
       ),
     );

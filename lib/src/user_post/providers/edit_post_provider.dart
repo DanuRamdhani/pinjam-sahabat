@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/src/home/providers/get_post.dart';
+import 'package:pinjam_sahabat/src/user_post/providers/compress.dart';
 import 'package:pinjam_sahabat/src/user_post/providers/get_user_post_provider.dart';
 import 'package:pinjam_sahabat/src/user_post/providers/location_provider.dart';
 import 'package:pinjam_sahabat/src/user_post/services/user_post_service.dart';
@@ -123,7 +124,13 @@ class EditPostProvider extends ChangeNotifier {
 
     if (image == null) return;
 
-    pickedImage = File(image.path);
+    try {
+      final compressedImage = await Compress.compressImage(File(image.path));
+      pickedImage = compressedImage;
+    } catch (e) {
+      if (!context.mounted) return;
+      customSnackBar(context, 'Cant add this image');
+    }
     notifyListeners();
     if (!context.mounted) return;
     context.pop();
@@ -135,7 +142,13 @@ class EditPostProvider extends ChangeNotifier {
 
     if (image == null) return;
 
-    pickedImage = File(image.path);
+    try {
+      final compressedImage = await Compress.compressImage(File(image.path));
+      pickedImage = compressedImage;
+    } catch (e) {
+      if (!context.mounted) return;
+      customSnackBar(context, 'Cant add this image');
+    }
     notifyListeners();
     if (!context.mounted) return;
     context.pop();

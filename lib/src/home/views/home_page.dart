@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/src/home/models/response.dart';
@@ -27,8 +29,31 @@ class HomePage extends StatelessWidget {
             if (data?['profilePicture'] != null) {
               return Row(
                 children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(data?['profilePicture']),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(80),
+                    child: CachedNetworkImage(
+                      alignment: Alignment.center,
+                      height: 40,
+                      width: 40,
+                      fit: BoxFit.cover,
+                      imageUrl: data?['profilePicture'],
+                      placeholder: (context, url) => FaIcon(
+                        FontAwesomeIcons.solidCircleUser,
+                        size: 40,
+                        color: Colors.grey.shade400,
+                      ),
+                      errorWidget: (context, url, error) => FaIcon(
+                        FontAwesomeIcons.solidCircleUser,
+                        size: 40,
+                        color: Colors.grey.shade400,
+                      ),
+                      cacheManager: CacheManager(
+                        Config(
+                          'cache-profile',
+                          stalePeriod: const Duration(minutes: 30),
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 8),
                   Text(

@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pinjam_sahabat/extensions/context_extension.dart';
 import 'package:pinjam_sahabat/helper/firebase_helper.dart';
+import 'package:pinjam_sahabat/routes/routes.dart';
 import 'package:pinjam_sahabat/src/main_wrapper/providers/main_wrapper_provider.dart';
 import 'package:pinjam_sahabat/utils/custom_snack_bar.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +19,7 @@ class ProfileProvider extends ChangeNotifier {
   bool get isLoading => _isLoading;
   Map<String, dynamic>? get userData => _userData;
 
-  Future<void> fetchUserData() async {
+  Future<void> fetchUserData(BuildContext context) async {
     _isLoading = true;
     notifyListeners();
 
@@ -28,7 +30,8 @@ class ProfileProvider extends ChangeNotifier {
           await db.collection('users').doc(user?.uid).get();
       _userData = snapshot.data() as Map<String, dynamic>?;
     } catch (e) {
-      print('Error fetching user data: $e');
+      if (!context.mounted) return;
+      customSnackBar(context, 'Error fetching user data');
     }
 
     _isLoading = false;
@@ -51,10 +54,10 @@ class ProfileProvider extends ChangeNotifier {
           .collection('users')
           .doc(user?.uid)
           .update({'profilePicture': downloadUrl});
-
+      if (!context.mounted) return;
       customSnackBar(context, 'Foto profil berhasil diperbarui!');
 
-      await fetchUserData();
+      await fetchUserData(context);
     }
   }
 
@@ -64,6 +67,7 @@ class ProfileProvider extends ChangeNotifier {
     mainWrapperProv.onItemTapped(context, 0);
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.clear();
-    Navigator.pushReplacementNamed(context, '/login');
+    if (!context.mounted) return;
+    context.pushReplacementNamed(AppRoute.login);
   }
 }

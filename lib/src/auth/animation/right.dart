@@ -26,7 +26,7 @@ class _RightAnimationState extends State<RightAnimation>
     );
 
     slideAnimation = Tween<Offset>(
-      begin: Offset(40, 0.0), // Starts from the Right (off-screen)
+      begin: const Offset(40, 0.0), // Starts from the Right (off-screen)
       end: Offset.zero,
     ).animate(controller);
 

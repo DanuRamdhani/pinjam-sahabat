@@ -40,7 +40,6 @@ class RatingProvider extends ChangeNotifier {
       isLoading = false;
       notifyListeners();
       customSnackBar(context, 'gagal memberi rating');
-      print(e);
     }
   }
 }
