@@ -28,7 +28,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
     final getPostProv = context.read<GetPostProvider>();
     Future.microtask(() {
       if (widget.isGetUserData == false || widget.isGetUserData == null) {
-        getPostProv.getAllPost(context);
+        getPostProv.getPostForSearching();
       }
     });
 
